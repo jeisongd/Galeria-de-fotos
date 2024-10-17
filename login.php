@@ -1,18 +1,35 @@
 <?php
 session_start();
 if($_POST){
-    if(($_POST['usuario']=="Jeisson") && ($_POST['contrasenia']=="12345")){
-      $_SESSION['usuario']="Jeisson";
-      
-      header("location:index.php");
-
-    }else{
-        echo "<script> alert('Usuario o contraseña incorrectos') </script>";
+    // Conexión a la base de datos
+    $conexion = new PDO("mysql:host=localhost;dbname=album", "root", "");
+    
+    // Recoger datos del formulario
+    $usuario = $_POST['usuario'];
+    $contrasenia = $_POST['contrasenia'];
+    
+    // Preparar consulta para verificar si el usuario existe
+    $sql = $conexion->prepare("SELECT * FROM usuarios WHERE usuario=:usuario");
+    $sql->bindParam(':usuario', $usuario);
+    $sql->execute();
+    
+    // Obtener los datos del usuario
+    $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+    
+    if($resultado){
+        // Verificar la contraseña
+        if(password_verify($contrasenia, $resultado['contrasenia'])){
+            // Iniciar sesión si la contraseña es correcta
+            $_SESSION['usuario'] = $resultado['usuario'];
+            header("location:index.php");
+        } else {
+            echo "<script> alert('Contraseña incorrecta') </script>";
+        }
+    } else {
+        echo "<script> alert('Usuario no encontrado') </script>";
     }
 }
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -39,23 +56,27 @@ if($_POST){
                 <div class="col-md-4">
                  <br/>
                  <div class="card">
-                 <div class="card-header">Iniciar sesion</div>
+                 <div class="card-header">Iniciar sesión</div>
                       <div class="card-body">
-                          <form action="login.php" method="post">
+                          <form action="login.php" method="post" autocomplete="off">
 
-                              Usuario: <input class="form-control" type="text" name="usuario" id="">
-                             </br>
-                              Cotraseña: <input class="form-control" type="password" name="contrasenia" id="">
+                              Usuario: <input class="form-control" type="text" name="usuario" id="" required>
                               </br>
-                              <button class="btn btn-success" type="submit">Entrar al portafolio</button>
-
+                              Contraseña: <input class="form-control" type="password" name="contrasenia" id="" required>
+                              </br>
+                              <a  href = "recuperar_contrasenia.php"> ¿Olvidó su contraseña?</a>
+                              </br>
+                              </br>
+                              <button class="btn btn-success" type="submit">Entrar a la galería</button>
+                              </br> 
+                              <br>
+                              <a  href = "registro.php"> ¿No tienes cuenta?</a>
+                              <br>
                           </form>
                       </div>
                  <div class="card-footer text-muted"></div>
                 </div>
                
-
-           
                 </div>
 
                 <div class="col-md-4">
@@ -63,14 +84,8 @@ if($_POST){
                 </div>
                  
               </div>
-             
 
-         
         </div>
-      
-      
-    
 
-     
     </body>
 </html>
