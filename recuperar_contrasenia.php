@@ -43,27 +43,24 @@ if ($_POST) {
     <title>Recuperar Contraseña</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Recuperar.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                <br/>
-                <div class="card">
-                    <div class="card-header">Recuperar contraseña</div>
-                    <div class="card-body">
-                        <form action="registro.php" method="post">
-                            Correo: <input class="form-control" type="email" name="correo" required>
-                            <br/>
-                            <button class="btn btn-primary" type="submit">Enviar enlace</button>
-                        </form>
-                    </div>
-                    <div class="card-footer text-muted"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="wrapper">
+    <form action="registro.php" method="post">
+    
+      <h1>Recuperar Contraseña</h1>
+      
+      <div class="input-box">
+        <input type="text" placeholder="Correo" name="correo" required>
+        <i class='bx bxl-gmail'></i>  
+      </div>
+   
+      <button type="submit" class="btn">Recuperar</button>
+    </form>
+  </div>
 </body>
 </html>
+
 
