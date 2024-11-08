@@ -137,6 +137,18 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
         box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
     }
 
+    .btn-custom {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            transition: transform 0.3s, background-color 0.3s;
+            font-weight: bold;
+        }
+        .btn-custom:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+        }
+
     .table-striped tbody tr:nth-of-type(odd) {
         background-color: rgba(255, 255, 255, 0.9);
     }
@@ -149,3 +161,5 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
         border-radius: 0.5rem; /* Esquinas redondeadas para las imágenes */
     }
 </style>
+
+

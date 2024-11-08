@@ -13,6 +13,7 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery Up</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- Agregar Bootstrap Icons -->
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -75,13 +76,52 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
         .whatsapp-bubble img {
             width: 40px; /* Tamaño del icono */
         }
+
+        /* Estilos para las tarjetas */
+        .card-img-top {
+            object-fit: contain; /* Mantiene las proporciones de la imagen sin recortarla */
+            max-width: 100%; /* Ajusta el ancho máximo */
+            max-height: 250px; /* Limita la altura máxima de la imagen */
+            width: auto; /* Mantiene la proporción original */
+            height: auto; /* Mantiene la proporción original */
+        }
+
+        /* Estilo de la barra de búsqueda */
+        .input-group {
+            max-width: 400px; /* Ajusta el ancho de la barra de búsqueda */
+            width: 100%;
+        }
+
+        .input-group-text {
+            background-color: #6a11cb; /* Fondo del icono de búsqueda */
+            color: white;
+        }
+
+        input.form-control {
+            border-radius: 0.5rem; /* Bordes redondeados */
+        }
+
+        /* Icono de búsqueda */
+        .bi-search {
+            font-size: 1.2rem;
+        }
+
+        /* Icono de favoritos */
+        .favorite-btn {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #f39c12; /* Color dorado para la estrella */
+        }
+
+        .favorite-btn.favorited {
+            color: #f1c40f; /* Color dorado brillante para la estrella llena */
+        }
     </style>
 </head>
 <body>
 
 <!-- Hero Section -->
 <div class="p-5 bg-light text-center">
-  
     <h1 class="display-3">Bienvenidos a Gallery Up</h1>
     <p class="lead">Este es un portafolio privado</p>
     <hr class="my-4">
@@ -97,23 +137,21 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="Imagenes/Club.jpg" class="d-block w-100" alt="Foto 1">
+            <img src="Imagenes/paisajes naturales.jpg" class="d-block w-100" alt="Foto 1">
             <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded">
                 <h5>Reencuentro</h5>
-                <p>Salida con Mis ex compañeros de la Universidad,
-                    fuimos a una discoteca y la pasamos muy bien.
-                </p>
+                <p>Salida con Mis ex compañeros de la Universidad, fuimos a una discoteca y la pasamos muy bien.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="Imagenes/Atardecer.jpg" class="d-block w-100" alt="Foto 2">
+            <img src="Imagenes/lago.jpg" class="d-block w-100" alt="Foto 2">
             <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded">
                 <h5>Título de la Foto 2</h5>
                 <p>Descripción breve de la Foto 2.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="Imagenes/thumb-1920-354092.jpg" class="d-block w-100" alt="Foto 3">
+            <img src="Imagenes/Aventura.jpg" class="d-block w-100" alt="Foto 3">
             <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded">
                 <h5>Título de la Foto 3</h5>
                 <p>Descripción breve de la Foto 3.</p>
@@ -130,6 +168,20 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
     </button>
 </div>
 
+<!-- Barra de Búsqueda -->
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-search"></i> <!-- Icono de búsqueda usando Bootstrap Icons -->
+                </span>
+                <input id="searchInput" type="text" class="form-control" placeholder="Buscar fotos..." oninput="filterGallery()">
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Project Gallery -->
 <div class="container my-4">
     <h2 class="section-title text-center">Tus Fotos</h2>
@@ -137,11 +189,20 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
         <?php foreach($resultado as $proyecto) { ?>
             <div class="col">
                 <div class="card h-100 shadow">
-                    <img src="<?php echo 'imagenes/' . $proyecto['imagen']; ?>" class="card-img-top" alt="<?php echo $proyecto['titulo'] ?? 'Imagen'; ?>">
+                    <!-- La imagen dentro de la tarjeta -->
+                    <img src="<?php echo 'imagenes/' . $proyecto['imagen']; ?>" 
+                         class="card-img-top" 
+                         alt="<?php echo $proyecto['titulo'] ?? 'Imagen'; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $proyecto['titulo'] ?? 'Título no disponible'; ?></h5>
                         <p class="card-text"><?php echo $proyecto['descripcion'] ?? 'Descripción no disponible'; ?></p>
                         <button class="btn btn-custom w-100">Ver Detalles</button>
+                    </div>
+                    <!-- Botón de favoritos -->
+                    <div class="card-footer text-end">
+                        <span class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="bi bi-star"></i> <!-- Estrella vacía -->
+                        </span>
                     </div>
                 </div>
             </div>
@@ -150,7 +211,6 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
 </div>
 
 <!-- Footer -->
-
 <footer class="text-center">
     <div class="container d-flex justify-content-center align-items-center">
         <img src="Imagenes/Up.png" alt="Logo de Gallery Up" style="width: 100px; margin-right: 20px;"> <!-- Logo -->
@@ -165,7 +225,35 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
 <a href="https://wa.me/573182792733?text=Hola" class="whatsapp-bubble" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 </a>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+    // Función para filtrar las fotos en la galería
+    function filterGallery() {
+        const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const description = card.querySelector('.card-text').textContent.toLowerCase();
+            if (title.includes(searchQuery) || description.includes(searchQuery)) {
+                card.style.display = '';  // Mostrar tarjeta
+            } else {
+                card.style.display = 'none';  // Ocultar tarjeta
+            }
+        });
+    }
+
+    // Función para alternar el estado de favorito
+    function toggleFavorite(button) {
+        button.classList.toggle('favorited'); // Cambiar el estilo al hacer clic
+        const icon = button.querySelector('i');
+        if (button.classList.contains('favorited')) {
+            icon.classList.replace('bi-star', 'bi-star-fill'); // Estrella llena
+        } else {
+            icon.classList.replace('bi-star-fill', 'bi-star'); // Estrella vacía
+        }
+    }
+</script>
+
 </body>
 </html>
-
