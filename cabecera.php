@@ -35,7 +35,7 @@
 
 <div class="container my-4 d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
-        <img src="Imagenes/Up.png" alt="Logo de Gallery Up" style="width: 100px; margin-right: 20px;"> <!-- Logo -->
+        <img src="Imagenes/Logo Gallery Up.png" alt="Logo de Gallery Up" style="width: 100px; margin-right: 20px;"> <!-- Logo -->
         <a href="index.php" class="btn btn-primary btn-custom me-2">Inicio</a>
         <a href="galeria.php" class="btn btn-secondary btn-custom me-2">Galería</a>
     </div>

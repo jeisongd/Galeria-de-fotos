@@ -129,44 +129,55 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
 </div>
 
 <!-- Carousel -->
-<div id="carouselExampleIndicators" class="carousel slide mb-4" style="max-width: 800px; margin: auto;">
+<div id="carouselExampleIndicators" class="carousel slide mb-4" style="max-width: 700px; margin: auto;">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Foto 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Foto 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Foto 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="Imagenes/paisajes naturales.jpg" class="d-block w-100" alt="Foto 1">
-            <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded">
-                <h5>Reencuentro</h5>
-                <p>Salida con Mis ex compañeros de la Universidad, fuimos a una discoteca y la pasamos muy bien.</p>
+            <img src="Imagenes/paisajes naturales.jpg" class="d-block w-100" style="max-height: 400px; object-fit: cover;" alt="Reencuentro">
+            <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded" style="background: rgba(0, 0, 0, 0.6);">
+                <h5 class="fw-bold">Reencuentro</h5>
+                <p class="small">Salida con ex compañeros de la universidad, disfrutando de una gran noche en una discoteca.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="Imagenes/lago.jpg" class="d-block w-100" alt="Foto 2">
-            <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded">
-                <h5>Título de la Foto 2</h5>
-                <p>Descripción breve de la Foto 2.</p>
+            <img src="Imagenes/lago.jpg" class="d-block w-100" style="max-height: 400px; object-fit: cover;" alt="Lago Sereno">
+            <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded" style="background: rgba(0, 0, 0, 0.6);">
+                <h5 class="fw-bold">Lago Sereno</h5>
+                <p class="small">Un día tranquilo disfrutando de la vista en el lago y la serenidad del entorno.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="Imagenes/Aventura.jpg" class="d-block w-100" alt="Foto 3">
-            <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded">
-                <h5>Título de la Foto 3</h5>
-                <p>Descripción breve de la Foto 3.</p>
+            <img src="Imagenes/aventura.jpg" class="d-block w-100" style="max-height: 400px; object-fit: cover;" alt="Aventura en la Montaña">
+            <div class="carousel-caption d-none d-md-block bg-dark-custom p-3 rounded" style="background: rgba(0, 0, 0, 0.6);">
+                <h5 class="fw-bold">Aventura en la Montaña</h5>
+                <p class="small">Explorando nuevos caminos y enfrentando desafíos en una emocionante aventura al aire libre.</p>
             </div>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
+        <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
+        <span class="visually-hidden">Next</span>
     </button>
 </div>
+
+<style>
+    .carousel-inner img {
+        max-height: 400px;
+        object-fit: cover;
+    }
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.6);
+    }
+</style>
+
 
 <!-- Barra de Búsqueda -->
 <div class="container my-4">
@@ -213,7 +224,7 @@ $resultado=$objconexion->consultar("SELECT * FROM `proyectos`");
 <!-- Footer -->
 <footer class="text-center">
     <div class="container d-flex justify-content-center align-items-center">
-        <img src="Imagenes/Up.png" alt="Logo de Gallery Up" style="width: 100px; margin-right: 20px;"> <!-- Logo -->
+        <img src="Imagenes/Logo Gallery Up.png" alt="Logo de Gallery Up" style="width: 100px; margin-right: 20px;"> <!-- Logo -->
         <div>
             <p class="mb-0">© 2023 Gallery Up. Todos los derechos reservados.</p>
             <p>Desarrollado por [Tu Nombre]</p>
