@@ -38,29 +38,36 @@ if ($_POST) {
 
 ?>
 <!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Recuperar Contraseña</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="Recuperar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="Recuperar.css" />
 </head>
 <body>
-<div class="wrapper">
-    <form action="registro.php" method="post">
-    
-      <h1>Recuperar Contraseña</h1>
-      
-      <div class="input-box">
-        <input type="text" placeholder="Correo" name="correo" required>
-        <i class='bx bxl-gmail'></i>  
-      </div>
-   
-      <button type="submit" class="btn">Recuperar</button>
-    </form>
-  </div>
+    <div class="wrapper">
+        <div class="form-container">
+            <form action="registro.php" method="post">
+                <h1>Recuperar Contraseña</h1>
+                <div class="input-box">
+                    <input 
+                        type="email" 
+                        name="correo" 
+                        placeholder="Ingresa tu correo electrónico" 
+                        required 
+                    />
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <button type="submit" class="btn">Enviar enlace</button>
+                <div class="footer-text">
+                    <p>Ingresa el correo asociado a tu cuenta para recibir un enlace de recuperación.</p>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
-
-
